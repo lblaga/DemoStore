@@ -1,0 +1,42 @@
+server:
+  port: 8989
+
+spring:
+  application:
+    name: demostore
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+  datasource:
+    url: jdbc:h2:mem:demostoredb
+    username: sa
+    password:
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: DEBUG
+
+demostore:
+  demodata: true
+
+---
+
+spring:
+  profiles: mysql
+  datasource:
+    url: jdbc:mysql://localhost:3306/demostoredb?useSSL=false
+    username: demostore
+    password: hEMwqF6SMuz9m5gY
+  h2:
+    console:
+      enabled: false

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>demostore.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--rollover daily-->
+            <fileNamePattern>demostore-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!--each file should be at most 5MB, keep 7 days worth of history, but at most 1GB-->
+            <maxFileSize>5MB</maxFileSize>
+            <maxHistory>7</maxHistory>
+            <totalSizeCap>1GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d [%level] [%logger{20}] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="ROLLING" />
+    </root>
+
+</configuration>
