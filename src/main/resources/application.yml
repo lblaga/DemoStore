@@ -40,3 +40,15 @@ spring:
   h2:
     console:
       enabled: false
+
+---
+
+spring:
+  profiles: mysql-docker
+  datasource:
+    url: jdbc:mysql://localhost:3307/demostoredb?useSSL=false
+    username: demostore
+    password: hEMwqF6SMuz9m5gY
+  h2:
+    console:
+      enabled: false

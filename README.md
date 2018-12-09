@@ -17,7 +17,7 @@ The application has 2 REST API gateways, `Product API` and `Order API`. They are
 The application can be built with maven, and run with maven or as java jar file. All the above maven operations should 
 be triggered from the folder when pom.xml is located (/DemoStore/)
 
-1. ####Running with maven
+1. #### Running with maven
 This command will compile, package and run the application.  
 
 `mvn clean package spring-boot:run`
@@ -28,7 +28,7 @@ However, tests can be skipped with the usual:
 
 `mvn clean package spring-boot:run -DskipTests=true`
 
-2. ####Running as java jar file
+2. #### Running as java jar file
 - `mvn clean package` or `mvn clean package -DskipTests=true` then
 - `java -jar target/java -jar target/demostore-0.1-SNAPSHOT.jar`
    
@@ -47,6 +47,8 @@ To enable mysql support, the application must be started with the `mysql` spring
 `-Dspring.profiles.active=mysql` option:
   - `mvn clean package spring-boot:run -Dspring.profiles.active=mysql` or
   - `java -Dspring.profiles.active=mysql -jar target/java -jar target/demostore-0.1-SNAPSHOT.jar`
+- running **mysql DB** inside docker container with `docker-compose up` command. In this case the `mysql-docker` spring 
+profile must be used.  
    
 For both DB type cases the DB tables are automatically (re) created at application startup. This - of course - can be 
 controlled from the application.yml's `spring.jpa.hibernate.ddl-auto` property.
@@ -68,6 +70,3 @@ Ways to the test the endpoints:
  - with the **curl** scripts located at `/src/test/resources/curl`
  - with any browser, by default the GET endpoints, for ex. [http://localhost:8989/products](http://localhost:8989/products)
  - any other application supporting REST client
-
-
-
