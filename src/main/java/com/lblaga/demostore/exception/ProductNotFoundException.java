@@ -5,6 +5,6 @@ package com.lblaga.demostore.exception;
  */
 public class ProductNotFoundException extends RuntimeException {
     public ProductNotFoundException(Long id) {
-        super(String.format("Can't find product with id [%d]", id));
+        super(String.format("No product with id [%d]", id));
     }
 }

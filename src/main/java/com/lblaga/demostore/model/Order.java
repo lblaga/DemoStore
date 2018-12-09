@@ -31,10 +31,11 @@ public class Order {
     @NotEmpty
     private List<OrderItem> orderItems;
 
-    public Order() {
+    Order() {
     }
 
     private Order(Builder builder) {
+        this.id = builder.id;
         this.buyerEmail = builder.buyerEmail;
         this.createdDate = builder.createdDate;
         this.orderItems = builder.orderItems;
@@ -44,24 +45,12 @@ public class Order {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getBuyerEmail() {
         return buyerEmail;
     }
 
-    public void setBuyerEmail(String buyerEmail) {
-        this.buyerEmail = buyerEmail;
-    }
-
     public ZonedDateTime getCreatedDate() {
         return createdDate;
-    }
-
-    public void setCreatedDate(ZonedDateTime createdDate) {
-        this.createdDate = createdDate;
     }
 
     public List<OrderItem> getOrderItems() {
@@ -73,11 +62,13 @@ public class Order {
     }
 
     public static class Builder {
+        private Long id;
         private @NotNull @Email String buyerEmail;
         private @NotNull ZonedDateTime createdDate;
         private @NotEmpty List<OrderItem> orderItems;
 
-        public Builder id() {
+        public Builder id(Long id) {
+            this.id = id;
             return this;
         }
 

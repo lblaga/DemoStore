@@ -11,14 +11,7 @@ public final class OrderBriefResponse {
     private ZonedDateTime createdDate;
     private Double totalPrice;
 
-    public OrderBriefResponse() {
-    }
-
-    public OrderBriefResponse(Long id, String buyerEmail, ZonedDateTime createdDate, Double totalPrice) {
-        this.id = id;
-        this.buyerEmail = buyerEmail;
-        this.createdDate = createdDate;
-        this.totalPrice = totalPrice;
+    OrderBriefResponse() {
     }
 
     private OrderBriefResponse(Builder builder) {

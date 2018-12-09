@@ -42,8 +42,7 @@ public class ProductControllerTest {
             throws Exception {
 
         ProductRequest p1 = new ProductRequest("P1", 1.59);
-        Product createdProduct = new Product(p1.getName(), p1.getPrice());
-        createdProduct.setId(1L);
+        Product createdProduct = new Product.Builder().id(1L).name(p1.getName()).price(p1.getPrice()).build();
 
         given(productService.create(p1)).willReturn(createdProduct);
 
@@ -55,13 +54,11 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void givenProduct_whenGetProducts_thenReturnJsonArray()
+    public void givenProducts_whenGetProducts_thenReturnJsonArray()
             throws Exception {
 
-        Product p1 = new Product("P1", 1.59);
-        p1.setId(1L);
-        Product p2 = new Product("P2", 6.89);
-        p2.setId(2L);
+        Product p1 = new Product.Builder().id(1L).name("P1").price(1.59).build();
+        Product p2 = new Product.Builder().id(2L).name("P2").price(6.89).build();
 
         List<Product> allProducts = Stream.of(p1, p2).collect(Collectors.toList());
 
@@ -79,10 +76,6 @@ public class ProductControllerTest {
     @Test
     public void givenProduct_whenGetNonExistingProduct_thenReturnErrorJson()
             throws Exception {
-        Product p1 = new Product("P1", 1.59);
-        Product createdProduct = new Product(p1.getName(), p1.getPrice());
-        createdProduct.setId(1L);
-
         given(productService.get(1L)).willThrow(new ProductNotFoundException(1L));
 
         mvc.perform(MockMvcRequestBuilders.get("/products/1")

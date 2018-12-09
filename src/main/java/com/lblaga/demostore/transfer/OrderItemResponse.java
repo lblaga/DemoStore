@@ -10,7 +10,7 @@ public final class OrderItemResponse {
     private Long amount;
     private Double total;
 
-    public OrderItemResponse() {
+    OrderItemResponse() {
     }
 
     private OrderItemResponse(Builder builder) {

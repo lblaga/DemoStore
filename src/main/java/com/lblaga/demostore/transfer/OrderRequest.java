@@ -21,27 +21,19 @@ public final class OrderRequest {
     @ApiModelProperty(value = "The ordered products")
     private List<OrderItemRequest> products;
 
-    public String getBuyerEmail() {
-        return buyerEmail;
-    }
-
-    public void setBuyerEmail(String buyerEmail) {
-        this.buyerEmail = buyerEmail;
-    }
-
-    public List<OrderItemRequest> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<OrderItemRequest> products) {
-        this.products = products;
-    }
-
-    public OrderRequest() {
+    OrderRequest() {
     }
 
     public OrderRequest(@NotEmpty @Email String buyerEmail, @NotNull @NotEmpty List<OrderItemRequest> products) {
         this.buyerEmail = buyerEmail;
         this.products = products;
+    }
+
+    public String getBuyerEmail() {
+        return buyerEmail;
+    }
+
+    public List<OrderItemRequest> getProducts() {
+        return products;
     }
 }

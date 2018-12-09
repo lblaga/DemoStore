@@ -28,7 +28,7 @@ public class ProductRepositoryTest {
     @Test
     public void whenCreate_thenReturnProduct() {
         // given
-        Product product = new Product("laptop", 999.89);
+        Product product = new Product.Builder().name("laptop").price(999.89).build();
         Product newProduct = entityManager.persist(product);
         entityManager.flush();
 

@@ -34,9 +34,7 @@ public class OrderControllerTest {
     @Test
     public void whenCreateOrderWithoutItem_thenReturnStatus400()
             throws Exception {
-        OrderRequest orderRequest = new OrderRequest();
-        orderRequest.setBuyerEmail("buyer1@email.com");
-        orderRequest.setProducts(new ArrayList<>());
+        OrderRequest orderRequest = new OrderRequest("buyer1@email.com", new ArrayList<>());
 
         mvc.perform(MockMvcRequestBuilders.post("/orders")
                 .content((new ObjectMapper().writeValueAsString(orderRequest)))

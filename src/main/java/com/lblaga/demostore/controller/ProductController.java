@@ -65,7 +65,7 @@ public class ProductController {
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Deletes a product.", notes = "Deletes a product corresponding to the passed id.")
-    public void delete(@ApiParam(value = "Product id", required=true) @PathVariable("id") Long id) {
+    public void delete(@ApiParam(value = "Product id", required=true, example = "1") @PathVariable("id") Long id) {
         productService.delete(id);
     }
 }

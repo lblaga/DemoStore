@@ -5,6 +5,6 @@ package com.lblaga.demostore.exception;
  */
 public class OrderNotFoundException extends RuntimeException {
     public OrderNotFoundException(Long id) {
-        super(String.format("Can't find order with id [%d]", id));
+        super(String.format("No order with id [%d]", id));
     }
 }

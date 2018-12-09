@@ -38,16 +38,17 @@ public class OrderRepositoryTest {
     @Test
     public void whenGetOrder_calculateTotalPrice() {
         //given
-        Product p1 = new Product("P1", 1.25);
-        Product p2 = new Product("P2", 2.15);
+        Product p1 = new Product.Builder().name("P1").price(1.25).build();
+        Product p2 = new Product.Builder().name("P2").price(2.15).build();
 
         entityManager.persist(p1);
         entityManager.persist(p2);
 
-        Order order = new Order();
-        order.setBuyerEmail("testbuyer@email.com");
         ZonedDateTime now = ZonedDateTime.now(ZoneOffset.UTC);
-        order.setCreatedDate(now);
+        Order order = new Order.Builder()
+                .buyerEmail("testbuyer@email.com")
+                .createdDate(now)
+                .build();
 
         OrderItem oi1 = new OrderItem.Builder()
                 .id(new OrderItemPK(order, p1))

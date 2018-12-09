@@ -11,7 +11,7 @@ public final class ProductRequest {
     @ApiModelProperty(value = "Product price", allowEmptyValue = true, example = "18.89")
     private Double price;
 
-    public ProductRequest() {
+    ProductRequest() {
     }
 
     public ProductRequest(String name, Double price) {
@@ -23,16 +23,8 @@ public final class ProductRequest {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Double getPrice() {
         return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
     }
 
     @Override

@@ -23,7 +23,7 @@ public class OrderItem implements Serializable, Comparable<OrderItem> {
 
     private int sorter;
 
-    public OrderItem() {
+    OrderItem() {
     }
 
     private OrderItem(Builder builder) {

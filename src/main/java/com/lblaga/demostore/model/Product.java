@@ -23,36 +23,25 @@ public class Product {
     @NotNull
     private Double price;
 
-    public Long getId() {
-        return id;
+    Product() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    private Product(Builder builder) {
+        this.id = builder.id;
+        this.name = builder.name;
+        this.price = builder.price;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Double getPrice() {
         return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public Product() {
-    }
-
-    public Product(@NotNull String name, @NotNull Double price) {
-        this.name = name;
-        this.price = price;
     }
 
     @Override
@@ -62,11 +51,36 @@ public class Product {
 
         Product product = (Product) o;
 
-        return getId() != null ? getId().equals(product.getId()) : product.getId() == null;
+        return getName() != null ? getName().equals(product.getName()) : product.getName() == null;
     }
 
     @Override
     public int hashCode() {
-        return getId() != null ? getId().hashCode() : 0;
+        return getName() != null ? getName().hashCode() : 0;
+    }
+
+    public static class Builder {
+        private Long id;
+        private @NotNull String name;
+        private @NotNull Double price;
+
+        public Builder id(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder name(@NotNull String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder price(@NotNull Double price) {
+            this.price = price;
+            return this;
+        }
+
+        public Product build() {
+            return new Product(this);
+        }
     }
 }

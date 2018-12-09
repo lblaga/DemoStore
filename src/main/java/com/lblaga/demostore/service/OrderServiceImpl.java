@@ -37,9 +37,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional
     public Order create(OrderRequest request) {
-        Order order = new Order();
-        order.setBuyerEmail(request.getBuyerEmail());
-        order.setCreatedDate(ZonedDateTime.now(ZoneOffset.UTC));
+        Order order = new Order.Builder()
+                .buyerEmail(request.getBuyerEmail())
+                .createdDate(ZonedDateTime.now(ZoneOffset.UTC))
+                .build();
+
         List<OrderItem> orderItemList = IntStream.range(0, request.getProducts().size())
                 .mapToObj(i -> {
                     OrderItemRequest item = request.getProducts().get(i);
@@ -51,6 +53,7 @@ public class OrderServiceImpl implements OrderService {
                             .sorter(i)
                             .build();
                 }).collect(Collectors.toList());
+
         order.setOrderItems(orderItemList);
         return orderRepository.save(order);
     }

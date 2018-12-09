@@ -26,7 +26,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public Product create(ProductRequest request) {
-        return productRepository.save(new Product(request.getName(), request.getPrice()));
+        return productRepository.save(new Product.Builder()
+                .name(request.getName())
+                .price(request.getPrice())
+                .build());
     }
 
     @Override
@@ -54,17 +57,20 @@ public class ProductServiceImpl implements ProductService {
         }
 
         Product oldProduct = productOptional.get();
-        Product newProduct = new Product();
-        newProduct.setId(id);
-        newProduct.setName(StringUtils.hasText(request.getName()) ? request.getName() : oldProduct.getName());
-        newProduct.setPrice(request.getPrice() != null ? request.getPrice() : oldProduct.getPrice());
-
+        Product newProduct = new Product.Builder()
+                .id(id)
+                .name(StringUtils.hasText(request.getName()) ? request.getName() : oldProduct.getName())
+                .price(request.getPrice() != null ? request.getPrice() : oldProduct.getPrice())
+                .build();
         productRepository.save(newProduct);
     }
 
     @Override
     @Transactional
     public void delete(Long id) {
+        if (!productRepository.findById(id).isPresent()) {
+            throw new ProductNotFoundException(id);
+        }
         productRepository.deleteById(id);
     }
 }

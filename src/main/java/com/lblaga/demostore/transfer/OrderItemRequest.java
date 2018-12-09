@@ -19,19 +19,11 @@ public final class OrderItemRequest {
         return productId;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
-
     public Long getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
-        this.amount = amount;
-    }
-
-    public OrderItemRequest() {
+    OrderItemRequest() {
     }
 
     public OrderItemRequest(Long productId, Long amount) {

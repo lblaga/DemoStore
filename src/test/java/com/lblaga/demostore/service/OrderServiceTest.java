@@ -37,15 +37,11 @@ public class OrderServiceTest {
 
     @Before
     public void setUp() {
-        Product p1 = new Product("P1", 1.25);
-        p1.setId(1L);
-        Product p2 = new Product("P2", 2.15);
-        p1.setId(2L);
+        Product p1 = new Product.Builder().id(1L).name("P1").price(1.25).build();
+        Product p2 = new Product.Builder().id(2L).name("P2").price(2.15).build();
 
-        Order order = new Order();
-        order.setId(1L);
-        order.setBuyerEmail("testbuyer@email.com");
-        order.setCreatedDate(ZonedDateTime.now(ZoneOffset.UTC));
+        Order order = new Order.Builder().id(1L).buyerEmail("testbuyer@email.com")
+                .createdDate(ZonedDateTime.now(ZoneOffset.UTC)).build();
 
         OrderItem oi1 = new OrderItem.Builder()
                 .id(new OrderItemPK(order, p1))

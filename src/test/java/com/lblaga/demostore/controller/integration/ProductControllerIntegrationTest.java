@@ -39,7 +39,7 @@ public class ProductControllerIntegrationTest {
         assertTrue(products.size() > 0);
         Long testId = products.get((int) (Math.random() * products.size())).getId();
 
-        Product newProduct = new Product(null, Double.MAX_VALUE);
+        Product newProduct = new Product.Builder().price(Double.MAX_VALUE).build();
 
         HttpEntity<Product> request = new HttpEntity<>(newProduct);
         restTemplate.exchange("/products/{id}", HttpMethod.PUT, request, Void.class, testId);

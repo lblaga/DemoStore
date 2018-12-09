@@ -13,7 +13,7 @@ public final class OrderResponse {
     private Double totalPrice;
     private List<OrderItemResponse> items;
 
-    public OrderResponse() {
+    OrderResponse() {
     }
 
     private OrderResponse(Builder builder) {
